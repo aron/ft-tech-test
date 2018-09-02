@@ -1,0 +1,18 @@
+{
+  "name": "ft-tech-test",
+  "version": "0.0.0",
+  "description": "FT Tech Test ============",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aron Carroll <code@aroncarroll.com> (http://aroncarroll.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.escape": "^4.0.1",
+    "lodash.get": "^4.4.2",
+    "mustache": "^2.3.2",
+    "node-static": "^0.7.10"
+  }
+}

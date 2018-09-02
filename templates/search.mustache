@@ -1,0 +1,39 @@
+<div class="o-grid-container">
+  <div class="o-grid-row">
+    <div data-o-grid-colspan="8 center">
+      {{# hasArticles }}
+      <div class="o-teaser-collection o-teaser-collection--horizontal demo-slim-collection">
+        <h2 class="o-teaser-collection__heading">Search Results for “{{query}}”</h2>
+        <ul class="o-teaser-collection__items">
+          {{# articles }}
+          <li class="o-teaser-collection__item">
+            <div class="o-teaser o-teaser--small   " data-o-component="o-teaser">
+              <div class="o-teaser__content">
+                <h2 class="o-teaser__heading">
+                  <a href="{{ permalink }}">{{ title }}</a>
+                </h2>
+                <p class="o-teaser__standfirst">{{ summary }}</p>
+                <div class="o-teaser__timestamp">
+                  <time data-o-component="o-date" class="o-date" datetime="{{ publishedTimestamp }}">published</time>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/ articles }}
+        </ul>
+      </div>
+      {{# pagination.hasPagination }}
+      <form class="o-buttons__pagination" action="/search" data-search-form>
+        <input type="hidden" name="q" value="{{query}}" />
+        {{# pagination.pages }}
+        <button type="submit" class="o-buttons" name="page" value="{{page}}" aria-selected="{{isSelected}}">{{label}}</button>
+        {{/ pagination.pages }}
+      </form>
+      {{/ pagination.hasPagination }}
+      {{/ hasArticles }}
+      {{^ hasArticles }}
+      <h2>No Results found for “{{ query }}”</h2>
+      {{/ hasArticles }}
+    </div>
+  </div>
+</div>
