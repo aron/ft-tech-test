@@ -1,7 +1,7 @@
 {
   "name": "ft-tech-test",
   "version": "0.0.0",
-  "description": "FT Tech Test ============",
+  "description": "FT Tech Test",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

@@ -1,5 +1,3 @@
-// Source: https://github.com/Financial-Times/ftdomdelegate
-
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -19,8 +17,9 @@ function notFoundHandler(req, res) {
    fileServer.serveFile('../templates/404.html', 404, {}, req, res);
 }
 
-// Crude HTTP server with path based routing. Will 404 if path does
-// not match handlers.
+// Crude HTTP server with path based routing for dynamic handlers and will
+// fallback to trying to serve assets from the /static directory. Will 404 if
+// path does not match handlers.
 function createServer() {
   return http.createServer(async (req, res) => {
     try {

@@ -5,11 +5,11 @@ Overview
 --------
 
 > Build a web page that displays a random article from The Financial Times. You
-> may use our Developer APIs to achieve this.  > Provide a search box for users
+> may use our Developer APIs to achieve this. Provide a search box for users
 > to search for headlines containing specific words (i.e. searching for "brexit"
 > should return a list of brexit-related headlines).
 
-This repository contains a small webservice that requests a random FT article
+This repository contains a small web service that requests a random FT article
 via it's search API[1] and displays it on the homepage. It also provides basic
 search functionality that allows searching for a specific term and paging
 through pages of results 20 at a time.
@@ -19,12 +19,34 @@ The server portion is written in Node which handles requests to the root and
 module.
 
 The client makes use of the Origami[3] component library to mimic the FT look
-and feel and utilizes basix client-side JavaScript to avoid full page reloads
+and feel and utilizes basic client-side JavaScript to avoid full page reloads
 by just requesting and updating the core content when searching.
 
 [1]: https://developer.ft.com/portal/docs-api-v1-reference-search-search-api-tutorial
 [2]: https://github.com/cloudhead/node-static/
 [3]: https://origami.ft.com
+
+Criteria
+--------
+
+The initial task had the following criteria.
+
+This website should be:
+
+[x] Server-side rendered
+[x] Responsive
+[x] Accessible
+[x] Built using Javascript and node.js
+[x] Not reliant on client-side frameworks (i.e. Angular, React) or libraries like jQuery
+
+Extra Credit:
+
+[x] Uses Origami Components
+[x] Progressively enhanced
+[x] Be deployed on Heroku
+[x] Have a similar look and feel as ft.com
+[ ] Performs well over 3G networks
+[ ] Works offline
 
 Usage
 -----
@@ -70,7 +92,7 @@ The core files are as follows:
    with the content provided.
 4. api.js interfaces with the FT API and makes requests and processes the
    returned data.
-5. static/main.js is the primary entry point for the frontend code, it mostly
+5. static/main.js is the primary entry point for the front-end code, it mostly
    just handles loading the search endpoint via AJAX.
 
 [1]: https://developer.ft.com/portal/docs-start-here
@@ -83,16 +105,29 @@ v8.11.4 and 5.6.0 at last update.
 
 Other than the FT API and Origami the following node libraries are used:
 
-mustache - for simplish templating[1]
+mustache - for simple-ish templating[1]
 node-static - for serving the CSS & JavaScript [2]
 lodash - for basic helper functions
 
-These were all chosen to keep the number of dependencies to a miniumum to
+These were all chosen to keep the number of dependencies to a minimum to
 support portability and ease of deployment.
 
 [1]: https://github.com/janl/mustache.js
 [2]: https://github.com/cloudhead/node-static/
 [3]: https://lodash.com
+
+Areas of Improvement
+--------------------
+
+* PJAX style navigation is not ideal, it jumps to the top of the main content
+  but could handle this better.
+* History uses replaceState to ensure the refresh button works but should
+  instead use pushState and popstate event to allow back/forward navigation.
+* Could use a service worker to store UI chrome and last loaded quote.
+* Better device support with more appropriate sizes and fonts for smaller
+  screens.
+* Minify, bundle and gzip assets.
+* Proper routing.
 
 License
 -------
