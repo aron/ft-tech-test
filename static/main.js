@@ -34,6 +34,8 @@
       var main = document.querySelector('[role=main]');
       main.innerHTML = xhr.response;
       main.scrollIntoView(true);
+      // Use replaceState to avoid having to deal with popstate.
+      // TODO: Use pushState...
       history.replaceState({}, null, url);
     });
     xhr.addEventListener('error', function (evt) {
@@ -59,13 +61,22 @@
 
   // Returns form as a query string. Uses FormData but supports IE11 (maybe)..
   function encodeForm(form) {
-    var entries = [];
-    var data = new FormData(form);
-    data.forEach(function (value, key) {
-      entries.push([key, value]);
+    var elements = toArray(form.elements);
+    var params = {};
+
+    // De-dupe the elements and always take the last one.
+    elements.forEach(function (el) {
+      if (el.name) {
+        params[el.name] = el.value;
+      }
     });
-    return entries.map(function (entry) {
-      return encodeURIComponent(entry[0]) + '=' + encodeURIComponent(entry[1]);
-    }).join('&');;
+
+    return Object.keys(params).map(function (key) {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+    }).join('&');
+  }
+
+  function toArray(obj) {
+    return [].slice.apply(obj);
   }
 })();

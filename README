@@ -31,7 +31,7 @@ Usage
 
 There is an example server running on Heroku available at:
 
-    http://
+    http://ft-tech-test-aron.herokuapp.com
 
 Configuration
 -------------
@@ -39,13 +39,13 @@ Configuration
 Configuration is handled by environment variables. The following options
 are supported:
 
-NODE_PORT - Select the port to run the server on. e.g. NODE_PORT=8001
+PORT - Select the port to run the server on. e.g. PORT=8001
 FT_API_KEY - Developer API Key for the FT API. e.g. FT_API_KEY=ABC123
 
 Development
 -----------
 
-To install the developer packages you'll need node and npm enstalled on your
+To install the developer packages you'll need node and npm installed on your
 machine. Then run:
 
     $ npm install
@@ -77,6 +77,9 @@ The core files are as follows:
 
 Dependencies
 ------------
+
+The app is designed to run on the LTS version of Node and npm which were
+v8.11.4 and 5.6.0 at last update.
 
 Other than the FT API and Origami the following node libraries are used:
 

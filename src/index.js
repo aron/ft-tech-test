@@ -54,7 +54,8 @@ exports.createServer = createServer;
 // If this file is the main entrypoint start the server.
 if (__filename === require.main.filename) {
   const server = createServer();
-  server.listen({host: 'localhost', port: process.env.NODE_PORT || 8000}, function () {
+  const host = process.env.NODE_ENV === 'production' ? undefined : 'localhost';
+  server.listen({host, port: process.env.PORT || 8000}, function () {
     const {port, address} = server.address();
     console.log(`server listening on http://${address}:${port}`);
   });
